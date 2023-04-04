@@ -25,6 +25,9 @@ btnAnterior.addEventListener("click", () => {
     pagina -= 1;
     cargarPeliculas();
     // llamar a la funcion que cargue las paginas
+  } else {
+    pagina = 500;
+    cargarPeliculas();
   }
 });
 
