@@ -5,9 +5,16 @@
 	box-sizing: border-box;
 }
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
 	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-	background: #2e2e2e;
+	background: #010115;
 	color: #1d1d1d;
 }
 
@@ -18,11 +25,9 @@ header{
 	color: #fff;
 	width: 100%;
 	display: flex;
-	/* flex-direction: row; */
 	justify-content: space-between;
-	
 	z-index: 1;
-	padding: 5px;
+	padding: 10px;
 	
 }
 
@@ -33,7 +38,6 @@ header a img{
 	
 }
 header a{
-	
 	cursor: pointer;
 	color: #fff;
 	font-weight: bold;
@@ -44,87 +48,100 @@ header h1{
 	text-align: center;
 }
 
+.header-titulo{
+	font-size: 2rem;
+	font-weight: bold;
+}
+
 
 .contenedor {
 	width: 90%;
-	max-width: auto;
-	margin: 70px auto 100px auto;
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	max-width: 1500px;
+	margin: 80px auto 100px auto;
+	display: flex;
 	gap: 40px;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 }
 
-.contenedor .overlay{
+
+.pelicula {
+	cursor: pointer;
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	border-radius: 15px;
+	position: relative;
+	overflow: hidden;
+	background-color: rgb(104, 10, 16) ;
+	color: #aaaaaa;
+	margin: 5px;
+	
+}
+
+.poster {
+	width: 100%;
+	height: 85%;
+	
+}
+
+.overlay{
 	width: 100%;
 	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(0, 0, 0, 0.90);
+	transform: translateY(85%);
+	background-color: rgb(104, 10, 16) ;
+	color: #fff;
 	overflow: hidden;
-	height: 0;
 	transition: .6s ease;
+	height: 100%;
 	font-size: 15px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-content: center;
-}
-
-.overlay p:nth-child(1){
-	overflow: hidden;
-	text-align: start;
-}
-.overlay p:nth-child(2){
-	padding: 5px;
-}
-
-.contenedor .pelicula {
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	/*justify-content: space-between;*/
-	width: 100%;
 	text-align: center;
-	/* border-radius: 15px; */
-	position: relative;
+	padding: 0.5rem;
+	gap: 1.2rem;
 	
 }
 
-
-.contenedor .pelicula .titulo {
+.titulo {
+	display: flex;
+	height: calc(15% - 1rem);
 	font-size: 16px;
 	font-weight: 600;
-	padding: 0 5px 10px;
-	padding: 10px 5px;
+}
+.titulo h3{
+	margin: auto;
+	padding: 0;
 }
 
-.contenedor .pelicula .poster {
-	width: 100%;
-	height: 85%;
-	/* margin-bottom: 10px; */
-	object-fit: cover;
-	
-}
-
-.pelicula{
-	background-color: #680a10 ;
-	color: #aaaaaa;
-	/* padding-bottom: 5px; */
-	margin: 5px;
-}
-
-.pelicula:hover .overlay{
+.sinopsis{
+	overflow-y: scroll;
+	text-align: start;
 	height: 100%;
-	position:absolute;
-	color: #fff;
-	text-align: center;
-	padding: 10px;
+}
+.sinopsis::-webkit-scrollbar{
+	display: none;
+}
+.puntaje{
+	vertical-align: bottom;
+}
+.pelicula:hover .overlay{
+	transform: translateY(0%);
 
 }
 
 
 
+
+
+
+
+
+
+/*Botones */
 
 .paginacion {
 	position: fixed;
@@ -145,13 +162,14 @@ header h1{
 	justify-content: center;
 	text-align: center;
 	height: 40px;
-	width: 150px;
 	background: #680a10;
 	color: #fff;
 	border-radius: 50px;
 	font-family: 'Montserrat', sans-serif;
-	font-weight: 600;
+	font-weight: bold;
 	transition: .3s ease all;
+	font-size: 25px;
+	padding-inline: 2rem;
 }
 
 .paginacion button:hover {
@@ -164,4 +182,5 @@ header h1{
   color: #fff;
 	font-weight: bold;
 }
+
 

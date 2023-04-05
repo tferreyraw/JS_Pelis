@@ -82,7 +82,7 @@ const cargarPeliculas = async () => {
     let res = await axios(
       `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=es-MX&page=${pagina}`
     );
-    if (res.request.status == 200) {
+    if (res.request.status === 200) {
       let peliculas = "";
 
       res.data.results.forEach((pelicula) => {
@@ -90,11 +90,13 @@ const cargarPeliculas = async () => {
         <div class="pelicula">
         
         <img class = "poster" src="https://image.tmdb.org/t/p/w500${pelicula.poster_path}" />
-        <h3 class="titulo">${pelicula.title}</h3>
+        
         
         <div class="overlay">
-          <p><b>Sinopsis:</b> ${pelicula.overview}</p>
-          <p><b>Puntaje:</b> ${pelicula.vote_average}/10</p>
+          <div class="titulo">
+          <h3>${pelicula.title}</h3></div>
+          <p class="sinopsis"><b>Sinopsis:</b> ${pelicula.overview}</p>
+          <p class="puntaje"><b>Puntaje:</b> ${pelicula.vote_average}/10</p>
           
         </div>
         </div>`;
