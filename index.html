@@ -4,22 +4,50 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./pelis.svg" />
+    <link rel="shortcut icon" href="./img/pelis.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/3d5e53d0cc.js"
+      crossorigin="anonymous"
+    ></script>
     <title>React Peliculas</title>
   </head>
   <body>
     <header class="header">
-      <a href="./index.html"> <img src="./pelis.svg" alt="" />INICIO </a>
+      <a class="header-logo" href="./index.html">
+        <img src="./img/pelis.svg" alt="" />INICIO
+      </a>
       <a href="./index.html" class="header-titulo">Pelis populares</a>
-      <span></span>
+
+      <div class="header-search">
+        <form class="search-form">
+          <button class="search-button">
+            <i
+              class="fa-sharp fa-solid fa-magnifying-glass"
+              style="color: #ffffff"
+            ></i>
+          </button>
+          <input
+            type="search"
+            class="search-form-input"
+            placeholder="Buscar pelicula..."
+            minlength="3"
+          />
+        </form>
+      </div>
     </header>
 
     <div class="contenedor"></div>
     <footer class="paginacion">
-      <button id="btnAnterior">&#11164;</button>
+      <button id="btnAnterior">◄</button>
       <p id="info"></p>
-      <button id="btnSiguiente">&#11166;</button>
+      <button id="btnSiguiente">►</button>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./app.js"></script>

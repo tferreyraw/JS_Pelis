@@ -7,13 +7,13 @@
 
 html {
   box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
 }
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
 body {
-	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	background: #010115;
 	color: #1d1d1d;
 }
@@ -28,30 +28,56 @@ header{
 	justify-content: space-between;
 	z-index: 1;
 	padding: 10px;
-	
+}
+header a {
+	color: #fff;
+	text-decoration: none;
 }
 
-header a img{
+
+.header-logo{
+	cursor: pointer;
+	font-weight: bold;
+	text-align: center;
+}
+.header-logo img{
 	vertical-align: middle;
 	width: 60px;
 	padding: 0 10px;
 	
 }
-header a{
-	cursor: pointer;
-	color: #fff;
-	font-weight: bold;
-	text-decoration: none;
-	text-align: end;
-}
-header h1{
-	text-align: center;
-}
-
 .header-titulo{
 	font-size: 2rem;
 	font-weight: bold;
+	text-align: center;
 }
+.header-search{
+	align-self: center;
+}
+.search-form{
+	padding: 5px;
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	
+}
+.search-form-input, .search-button{
+	flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  outline: none;
+  font-weight: 600;
+	color: #fff;
+	font-size: 16px;
+}
+.search-form-input{
+	width: 140px;
+}
+.search-button{
+	cursor: pointer;
+}
+
 
 
 .contenedor {
@@ -63,7 +89,20 @@ header h1{
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 }
-
+.contenedor-error{
+	margin: 40px;
+	color: #fff;
+	font-weight: bold;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.contenedor-error img{
+	width: 80%;
+	padding: 15px;
+	border-radius: 50px;
+}
 
 .pelicula {
 	cursor: pointer;
@@ -136,11 +175,6 @@ header h1{
 
 
 
-
-
-
-
-
 /*Botones */
 
 .paginacion {
@@ -165,7 +199,7 @@ header h1{
 	background: #680a10;
 	color: #fff;
 	border-radius: 50px;
-	font-family: 'Montserrat', sans-serif;
+	
 	font-weight: bold;
 	transition: .3s ease all;
 	font-size: 25px;
@@ -176,7 +210,10 @@ header h1{
 	background: #484646;
 } 
 
-.paginacion p{
+
+
+.paginacion #info{
+	text-align: center;
 	align-self: center;
   justify-content: center;
   color: #fff;
@@ -184,3 +221,8 @@ header h1{
 }
 
 
+@media only screen and (max-width: 600px) {
+  .header-titulo{
+		display: none;
+	}
+}

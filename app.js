@@ -1,30 +1,21 @@
-// pasar a axios
-// editar el css
-// mostrar numero de pagina
-
-// funcion para cargar las peliculas
-
 window.addEventListener("load", () => {
   cargarPeliculas();
 });
 
-let pagina = 1; // variable para controla la paginacion
+let pagina = 1; //
 
-//capturar los botones
-
-let btnAnterior = document.querySelector("#btnAnterior");
-let btnSiguiente = document.querySelector("#btnSiguiente");
-let info = document.querySelector("#info");
-let header = document.querySelector("#header");
-
-//funcion anterior
+const btnAnterior = document.querySelector("#btnAnterior");
+const btnSiguiente = document.querySelector("#btnSiguiente");
+const contenedor = document.querySelector(".contenedor");
+const info = document.querySelector("#info");
+const form = document.querySelector(".search-form");
+const input = document.querySelector(".search-form-input");
+const btnSearch = document.querySelector(".search-button");
 
 btnAnterior.addEventListener("click", () => {
   if (pagina > 1) {
-    //pagina = pagina-1
     pagina -= 1;
     cargarPeliculas();
-    // llamar a la funcion que cargue las paginas
   } else {
     pagina = 500;
     cargarPeliculas();
@@ -33,48 +24,15 @@ btnAnterior.addEventListener("click", () => {
 
 btnSiguiente.addEventListener("click", () => {
   if (pagina < 500) {
-    //pagina = pagina-1
-    pagina += 1; // ++
+    pagina += 1;
     cargarPeliculas();
-    // llamar a la funcion que cargue las paginas
   } else {
     pagina = 1;
     cargarPeliculas();
   }
 });
 
-// funcion que cargue las pelis
-
 const apiKey = "b021b2b33671c83af544e4d1e443e3db";
-
-//FUNCION USANDO FETCH!!!!!!
-// const cargarPeliculas = async () => {
-//   try {
-//     header.innerHTML = `<p>Estas en la pagina numero: "${pagina}"</p>`;
-//     let respuesta = await fetch(
-//       `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=es-MX&page=${pagina}`
-//     );
-//     console.log(respuesta);
-//     if (respuesta.status == 200) {
-//       let datos = await respuesta.json();
-//       console.log(datos);
-//       let peliculas = "";
-
-//       datos.results.forEach((pelicula) => {
-//         peliculas += `<div class="pelicula">
-// <img class = "poster" src="https://image.tmdb.org/t/p/w500${pelicula.poster_path}" />
-// <h3 class="titulo">${pelicula.title}</h3>
-// </div>`;
-//       });
-
-//       document.querySelector(".contenedor").innerHTML = peliculas;
-//     } else if (respuesta.status === 404) {
-//       console.log("error 404 nos vemos en otro lugar");
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 const cargarPeliculas = async () => {
   try {
@@ -88,25 +46,79 @@ const cargarPeliculas = async () => {
       res.data.results.forEach((pelicula) => {
         peliculas += `
         <div class="pelicula">
-        
-        <img class = "poster" src="https://image.tmdb.org/t/p/w500${pelicula.poster_path}" />
-        
-        
-        <div class="overlay">
-          <div class="titulo">
-          <h3>${pelicula.title}</h3></div>
-          <p class="sinopsis"><b>Sinopsis:</b> ${pelicula.overview}</p>
-          <p class="puntaje"><b>Puntaje:</b> ${pelicula.vote_average}/10</p>
-          
-        </div>
+          <img class = "poster" src="https://image.tmdb.org/t/p/w500${pelicula.poster_path}" />
+          <div class="overlay">
+            <div class="titulo">
+              <h3>${pelicula.title}</h3>
+            </div>
+            <p class="sinopsis"><b>Sinopsis:</b> ${pelicula.overview}</p>
+            <p class="puntaje"><b>Puntaje:</b> ${pelicula.vote_average}/10</p>
+          </div>
         </div>`;
       });
 
-      document.querySelector(".contenedor").innerHTML = peliculas;
+      contenedor.innerHTML = peliculas;
     } else if (res.request.status === 404) {
       console.log("error 404 nos vemos en otro lugar");
     }
   } catch (error) {
     console.log(error);
   }
+};
+
+//Funcion para el BUSCADOR
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const username = input.value.trim();
+  if (!username) return;
+  obtenerData(username);
+  input.value = "";
+});
+
+const obtenerData = async (username) => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=es-MX&query=${username}&page=1&include_adult=false`
+    );
+
+    if (response.status == 200) {
+      const data = await response.data;
+      mostrarDatos(data);
+      console.log(data);
+    } else if (response.status === 404) {
+      console.log("Error 404 nos vemos en otro lugar");
+    }
+  } catch (error) {
+    console.error("Error", error);
+  }
+};
+
+const mostrarDatos = (data) => {
+  let peliculas = "";
+
+  data.results.forEach((pelicula) => {
+    peliculas += `
+      <div class="pelicula">
+        <img class = "poster" src="https://image.tmdb.org/t/p/w500${pelicula.poster_path}" />
+        <div class="overlay">
+          <div class="titulo">
+            <h3>${pelicula.title}</h3>
+          </div>
+          <p class="sinopsis"><b>Sinopsis:</b> ${pelicula.overview}</p>
+          <p class="puntaje"><b>Puntaje:</b> ${pelicula.vote_average}/10</p>
+        </div>
+      </div>`;
+  });
+
+  if (Object.keys(data.results).length === 0) {
+    return (contenedor.innerHTML = `<div class="contenedor-error">
+    <h3>
+      Whoops!! Pelicula no encontrada!!
+    </h3>
+    <img src="./img/NotFoundShrek.gif" alt="" />
+  </div>`);
+  }
+  contenedor.innerHTML = peliculas;
 };
