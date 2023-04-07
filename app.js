@@ -16,9 +16,6 @@ btnAnterior.addEventListener("click", () => {
   if (pagina > 1) {
     pagina -= 1;
     cargarPeliculas();
-  } else {
-    pagina = 500;
-    cargarPeliculas();
   }
 });
 
@@ -37,6 +34,11 @@ const apiKey = "b021b2b33671c83af544e4d1e443e3db";
 const cargarPeliculas = async () => {
   try {
     info.innerHTML = `<p>Pagina Nº ${pagina}</p>`;
+    if (pagina === 1) {
+      btnAnterior.style.display = "none";
+    } else {
+      btnAnterior.style.display = "block";
+    }
     let res = await axios(
       `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=es-MX&page=${pagina}`
     );
