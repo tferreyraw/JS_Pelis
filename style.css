@@ -182,24 +182,16 @@ header a {
 	bottom: 0;
 	background: #410509;
 	width: 100%;
-	display: flex;
-	justify-content: center;
-	gap: 20px;
-	padding: 10px;
+	color: #fff;
 }
 
 .paginacion button {
 	cursor: pointer;
 	border: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
 	height: 40px;
 	background: #680a10;
 	color: #fff;
 	border-radius: 50px;
-	
 	font-weight: bold;
 	transition: .3s ease all;
 	font-size: 25px;
@@ -211,15 +203,24 @@ header a {
 } 
 
 
-
-.paginacion #info{
+#info, #info-search{
 	text-align: center;
 	align-self: center;
-  justify-content: center;
-  color: #fff;
 	font-weight: bold;
 }
 
+.popular-paginacion, .popular-search{
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	padding: 10px
+}
+/* .popular-search{
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	padding: 10px
+} */
 
 @media only screen and (max-width: 600px) {
   .header-titulo{
