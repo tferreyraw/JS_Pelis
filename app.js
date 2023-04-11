@@ -64,7 +64,6 @@ const cargarPeliculas = async () => {
           </div>
         </div>`;
       });
-      console.log(res.data);
       info.innerHTML = `<p>Pagina Nº ${pagina}</p>`;
       contenedor.innerHTML = peliculas;
     } else if (res.request.status === 404) {
@@ -87,7 +86,6 @@ const clickSiguiente = () => {
   if (page < 500) {
     page += 1;
     obtenerDataBusqueda(queBuscar, page);
-    console.log(`el valor de page ahora es ${page}`);
   } else {
     obtenerDataBusqueda(queBuscar, page);
     btnSiguienteSearch.display.style = "none";
@@ -127,7 +125,6 @@ const obtenerDataBusqueda = async (queBuscar, page = 1) => {
     if (response.status == 200) {
       const data = await response.data;
       mostrarDatosBusqueda(data);
-      console.log(data);
     } else if (response.status === 404) {
       console.log("Error 404 nos vemos en otro lugar");
     }
