@@ -1,4 +1,4 @@
-# [ReactPelis](https://tferreyraw.github.io/ReactPelis/)
+# [JS_Pelis](https://tferreyraw.github.io/JS_Pelis/)
 
 Web desarrollada para el curso de REACT otorgado por Codo a Codo 4.0
 
@@ -19,4 +19,4 @@ Habilidades a mostrar en el proyecto:
 - Manejo de Eventos con Javascript
 - Llamada a una API para pedir datos
 
-[Link a la WEB](https://tferreyraw.github.io/ReactPelis/)
+[Link a la WEB](https://tferreyraw.github.io/JS_Pelis/)
